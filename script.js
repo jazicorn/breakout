@@ -5,6 +5,7 @@ var ctx = canvas.getContext("2d");
 var ballRadius = 10;
 var x = canvas.width/2;
 var y = canvas.height-30;
+// what the heck dx = 2? why? Is it two spaces? milimeters?
 var dx = 2;
 var dy = -2;
 var paddleHeight = 10;
@@ -12,7 +13,6 @@ var paddleWidth = 75;
 var paddleX = (canvas.width-paddleWidth) / 2;
 var rightPressed = false;
 var leftPressed = false;
-
 var brickRowCount = 3;
 var brickColumnCount = 5;
 var brickWidth = 75;
@@ -25,7 +25,7 @@ var bricks = [];
 for(var c=0; c<brickColumnCount; c++) {
     bricks[c] = [];
     for(var r=0; r<brickRowCount; r++) {
-        bricks[c][r] = { x: 0, y: 0 };
+        bricks[c][r] = { x: 0, y: 0, status: 1};
     }
 }
 
@@ -50,12 +50,29 @@ function keyUpHandler(e) {
     }
 }
 
+function collisionDetection() {
+    // look up again what the ++ does in c++
+    for(var c=0; c<brickColumnCount; c++) {
+        for(var r=0; r<brickRowCount; r++) {
+            var b = bricks[c][r];
+            if(b.status == 1) {
+                if(x > b.x && x< b.x+brickWidth && y > b.y && y < b.y) {
+                    // what does dy = -dy do?
+                    dy = -dy;
+                    //why does status 0 make brick dissapear?
+                    b.status = 0;
+                }
+            }
+        }
+    }
+}
+
 function drawBricks() {
     for(var c=0; c<brickColumnCount; c++) {
         for(var r=0; r<brickRowCount; r++) {
             var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
             var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
-            // what the heck is this doing?
+            // I get bricks array is being spliced but how does that make the bricks show up?
             bricks[c][r].x = brickX;
             bricks[c][r].y = brickY;
             ctx.beginPath();
@@ -83,11 +100,13 @@ function drawPaddle() {
     ctx.fill();
     ctx.closePath();
 }
+
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
     drawPaddle();
     drawBricks();
+    collisionDetection();
 
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
