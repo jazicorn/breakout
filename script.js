@@ -52,11 +52,12 @@ function keyUpHandler(e) {
 
 function collisionDetection() {
     // look up again what the ++ does in c++
+    // I think the c++ is how javascript does loops
     for(var c=0; c<brickColumnCount; c++) {
         for(var r=0; r<brickRowCount; r++) {
             var b = bricks[c][r];
             if(b.status == 1) {
-                if(x > b.x && x< b.x+brickWidth && y > b.y && y < b.y) {
+                if(x > b.x && x< b.x+brickWidth && y > b.y && y < b.y + brickHeight) {
                     // what does dy = -dy do?
                     dy = -dy;
                     //why does status 0 make brick dissapear?
