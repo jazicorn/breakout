@@ -12,4 +12,3 @@ class Ball {
     }
 }
 
-const sball = new Ball(5);
