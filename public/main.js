@@ -83,18 +83,6 @@ function collisionDetection() {
     }
 }
 
-function drawScore() {
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "#289C99";
-    ctx.fillText("Score: "+score, 8, 20);
-}
-
-function drawLives() {
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "#289C99";
-    ctx.fillText("Lives: "+lives, canvas.width-65,20);
-}
-
 const arr = [1,2,3]
 console.log(arr[0]) // 1
 const barr = [[1,2,3], [11,22,33], [333,111,222]]

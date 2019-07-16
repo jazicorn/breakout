@@ -10,4 +10,7 @@ class Ball {
         ctx.fill();
         ctx.closePath();
     }
+    move() {
+        //
+    }
 }

@@ -1,4 +1,3 @@
-
 function drawBricks() {
     for(var c=0; c<brickColumnCount; c++) {
         for(var r=0; r<brickRowCount; r++) {
@@ -35,3 +34,20 @@ function drawBricks() {
         }
     }
 }
+
+// class Brick {
+//     constructor() {
+//         this.x = x;
+//         this.y = y;
+//         this.status = 0;
+//         this.width = width;
+//         this.height = height;
+//     }
+//     render(ctx) {
+//         ctx.beginPath();
+//         //
+//         //
+//         //
+//         ctx.closePath();
+//     }
+// }

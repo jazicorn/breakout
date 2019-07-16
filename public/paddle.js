@@ -5,3 +5,14 @@ function drawPaddle() {
     ctx.fill();
     ctx.closePath();
 }
+
+// class Paddle {
+//     constructor() {
+//         this.x = x;
+//         this.y = y;
+//     }
+//     render(ctx) {
+//         ctx.beginPath();
+//         ctx.closePath();
+//     }
+// }
