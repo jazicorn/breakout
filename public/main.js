@@ -95,6 +95,7 @@ function drawLives() {
     ctx.fillText("Lives: "+lives, canvas.width-65,20);
 }
 
+
 function drawBricks() {
     for(var c=0; c<brickColumnCount; c++) {
         for(var r=0; r<brickRowCount; r++) {
@@ -137,14 +138,30 @@ console.log(arr[0]) // 1
 const barr = [[1,2,3], [11,22,33], [333,111,222]]
 barr[0][1]
 
-function drawBall() {
-    ctx.beginPath();
-    // x-axis, y-axies, radias, starting angle
-    ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-    ctx.fillStyle = "#289C99";
-    ctx.fill();
-    ctx.closePath();
+class Ball {
+    constructor(radius, color = "#289C99") {
+        this.radius = radius;
+        this.color = color;
+    }
+    render(ctx) {
+        ctx.beginPath();
+        ctx.arc(x, y, this.radius, 0, Math.PI *2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.closePath();
+    }
 }
+
+const sball = new Ball(5);
+
+// function drawBall() {
+//     // ctx.beginPath();
+//     // // x-axis, y-axies, radias, starting angle
+//     // ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+//     // ctx.fillStyle = "#289C99";
+//     // ctx.fill();
+//     // ctx.closePath();
+// }
 
 function drawPaddle() {
     ctx.beginPath();
@@ -157,7 +174,8 @@ function drawPaddle() {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBricks();
-    drawBall();
+    // drawBall();
+    sball.render(ctx)
     drawPaddle();
     drawScore();
     drawLives();
