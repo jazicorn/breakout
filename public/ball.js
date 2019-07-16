@@ -11,4 +11,3 @@ class Ball {
         ctx.closePath();
     }
 }
-
